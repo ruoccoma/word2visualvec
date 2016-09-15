@@ -61,7 +61,6 @@ def main(argv):
 			outputfolder = arg
 	print 'Input folder is "', inputfolder
 	print 'Output folder is "', outputfolder
-	#generateFile(inputfolder, outputfolder)
 	train(inputfolder, outputfolder)
 
 if __name__ == "__main__":
