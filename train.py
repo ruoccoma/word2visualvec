@@ -18,7 +18,6 @@ def train(inputfolder, outputfolder):
 	labels = []
 	input = []
 	os.chdir(inputfolder)
-	count = 0
 	for file in glob.glob("*.h5"):
 		input_h5 = inputfolder + file
 		print(input_h5)
@@ -26,9 +25,6 @@ def train(inputfolder, outputfolder):
 		labels = labels + hdf.data.img_feats.tolist()
 		input = input + hdf.data.txt_feats.tolist()
 		hdf.close()
-		count = count + 1
-		if count == 1:
-			break
 	print(len(labels))
 	model = w2vv.define_model()
 	# checkpoint
