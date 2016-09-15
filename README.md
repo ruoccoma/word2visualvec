@@ -1,1 +1,1 @@
-# word2visualvec
+# Word2VisualVec
