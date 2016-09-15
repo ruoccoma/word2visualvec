@@ -1,3 +1,8 @@
+# Massimiliano Ruocco (ruocco@idi.ntnu.no)
+# Implementation of the Word2VisualVec found in [1].
+# [1] Jianfeng Dong, Xirong Li, Cees G. M. Snoek 2016. Word2VisualVec: Cross-Media Retrieval by Visual Feature Prediction
+#		https://arxiv.org/pdf/1604.06838v1.pdf
+
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
