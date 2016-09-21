@@ -16,6 +16,10 @@ import keras
 EPOCH = 10
 BATCH_SIZE = 32
 DROPOUT_RATE = 0.2 # tips for using dropout http://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/
+LOSS_FUNCTION = 'mse'
+
+# different objectives https://keras.io/objectives/
+opt = keras.optimizers.Adagrad(lr=0.01, epsilon=1e-08)
 
 # save/load models in keras http://machinelearningmastery.com/save-load-keras-deep-learning-models/
 def load(yaml_filename, h5_weights_filename):
@@ -50,11 +54,22 @@ def define_model():
 	model.add(Dropout(DROPOUT_RATE))
 	# second layer h3
 	model.add(Dense(2048, activation="relu"))
-	# different objectives https://keras.io/objectives/
-	adg = keras.optimizers.Adagrad(lr=0.01, epsilon=1e-08)
-	model.compile(loss='mse', optimizer=adg)
+	model.compile(loss=LOSS_FUNCTION, optimizer=opt)
 	#model.compile(loss='mse', optimizer='rmsprop')
 	return model
+
+def load_model(filename_model_yaml, filename_model_h5):
+	# load YAML and create model
+	yaml_file = open(filename_model_yaml, 'r')
+	loaded_model_yaml = yaml_file.read()
+	yaml_file.close()
+	loaded_model = model_from_yaml(loaded_model_yaml)
+	# load weights into new model
+	loaded_model.load_weights(filename_model_h5)
+	print("Loaded model from disk")
+	loaded_model.compile(loss=LOSS_FUNCTION, optimizer=opt)
+	return loaded_model
+
 
 def define_model_rev():
 	model = Sequential()
