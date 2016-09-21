@@ -55,3 +55,19 @@ def define_model():
 	model.compile(loss='mse', optimizer=adg)
 	#model.compile(loss='mse', optimizer='rmsprop')
 	return model
+
+def define_model_rev():
+	model = Sequential()
+	# first layer h1
+	model.add(Dense(1400, input_dim=2048))
+	# second layer h2
+	model.add(Dense(800, activation="relu")) # specify dropout here
+	model.add(Dropout(DROPOUT_RATE))
+	# second layer h3
+	model.add(Dense(300, activation="relu"))
+	# different objectives https://keras.io/objectives/
+	adg = keras.optimizers.Adagrad(lr=0.01, epsilon=1e-08)
+	model.compile(loss='mse', optimizer=adg)
+	#model.compile(loss='mse', optimizer='rmsprop')
+	return model
+
