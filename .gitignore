@@ -3,3 +3,4 @@
 *.old
 *.h5
 *.sh
+venv/
